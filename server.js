@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-// To make the path of the file more strict. and retrieve the file path fron the path.resolve method. it will return the path relative to the server.js file and from the directory that we run the script from.
+// To make the path of the file more strict. and retrieve the file path from the path.resolve method. it will return the path relative to the server.js file and from the directory that we run the script from.
 const path = require("path");
 
 // return the data of our index page.
