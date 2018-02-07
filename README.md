@@ -7,3 +7,5 @@ The devDependencies are all of the modules that we`ll need while in development.
 3. ``node ./node_modules/webpack/bin/webpack --config ./build/webpack.base.config.js``
 once we`ve run this, we can see that the dist foler was created with
 the app.js file generated.
+4. Install webpack-dev-middleware webpack-hot-middleware, For webpack-dev-middleware if every time we make a change, it will rebuild the module that was updated.
+Also, with the webpack-hot-middleware, every time we make an update, it will reload that section that changed in our browser.

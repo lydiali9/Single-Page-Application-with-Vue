@@ -12,6 +12,9 @@ const indexHTML = (() => {
 // To use the express.static module to return all of the static modules from the dist folder.
 app.use("/dist", express.static(path.resolve(__dirname, "./dist")));
 
+// To require the dev-server module and pass in the app server reference. This will extend the server with two new modules we created in the setup dev server method.
+require("./build/dev-server.js")(app);
+
 app.get('*', (req, res) => {
     res.write(indexHTML);
     res.end();
