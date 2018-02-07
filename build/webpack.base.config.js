@@ -8,16 +8,16 @@ const config = {
         app: path.resolve(__dirname, "../src/client-entry.js")
     },
     // It`s will include some rules in the module settings.
-    module: {
-        rules: [
-            {
-                enforce: "pre",
-                test: /(\.js$)/,
-                loader: "eslint-loader",
-                exclude: /node-modules/
-            }
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             enforce: "pre",
+    //             test: /(\.js$)/,
+    //             loader: "eslint-loader",
+    //             exclude: /node-modules/
+    //         }
+    //     ]
+    // },
     resolve: {
         alias: {
             vue: "vue/dist/vue.js"
