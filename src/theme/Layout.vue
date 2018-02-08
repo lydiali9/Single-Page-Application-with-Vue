@@ -1,12 +1,6 @@
 <template>
     <div>
-        <nav class="nav has-shadow">
-            <div class="container">
-                <a href="/">
-                    <img src="" alt="Vue">
-                </a>
-            </div>
-        </nav>
+        <app-header></app-header>
         <section class="main-section section">
             <div class="container content">
                 <div class="columns">
@@ -24,18 +18,18 @@
                 </div>
             </div>
         </section>
-        <footer class="footer">
-            <div class="container">
-                <div class="content has-text-centered">
-                    Follow us on
-                    <a href="https://lydiali9.github.io/" target="_blank">Blog 99</a>
-                </div>
-            </div>
-        </footer>
+        <app-footer></app-footer>
     </div>
 </template>
 <script>
+    import AppHeader from './AppHeader.vue'
+    import AppFooter from './AppFooter.vue'
+
     export default {
+        components: {
+            'app-header': AppHeader,
+            'app-footer': AppFooter
+        },
         data() {
             return {
                 posts: [
