@@ -14,8 +14,7 @@ const router = new VueRouter({
     }),
     routes: [
         { path: '/login', component: Login},
-        { path: '/category/:id', component: Category },
-        // { path: '/category/mobile', component: Category }, // these two links look vert similar. It would be nice if we could load them in a more dynamic way.
+        { path: '/category/:id', name: 'category', component: Category },
         { path: '/', redirect: '/category/front-end' }
     ]
 })
