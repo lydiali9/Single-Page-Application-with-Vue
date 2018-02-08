@@ -5,7 +5,7 @@ const clientConfig = require("./webpack.client.config");
 module.exports = function setupDevServer(app) {
     // To add a new entry point, This will be named webpack-hot-middleware/client into the entry areas.
     // This script added will connect to the receive notifications when the bundler rebuilds, and update the client bundle accordingly.
-    clientConfig.entry.app = ["webpack-hot-middleware/client", clientConfig.entry.app];
+    clientConfig.entry.app = ["webpack-hot-middleware/client", clientConfig.entry.app]
 
     // To push two new plugins that are needed for the hot-middleware to work.
     clientConfig.plugins.push(
@@ -20,6 +20,6 @@ module.exports = function setupDevServer(app) {
                 colors: true
             }
         } )
-    );
-    app.use(require('webpack-hot-middleware')(clientCompiler));
+    )
+    app.use(require('webpack-hot-middleware')(clientCompiler))
 }
