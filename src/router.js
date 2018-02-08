@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history', // If I visit the login path without the hash, everything loads as expected.
+    linkActiveClass: 'is-active',
+    scrollBehavior: (to, from, savedPosition) => ({
+        y: 0
+    }),
     routes: [
         { path: '/', component: Category },
         { path: '/login', component: Login}

@@ -11,4 +11,22 @@ the app.js file generated.
 Also, with the webpack-hot-middleware, every time we make an update, it will reload that section that changed in our browser.
 5. ``editorconfig`` file for some rules to be applied, it would be nice to have a more thorought process to automatically check for common Javascript mistakes and styling issues, while building code, This is where linting is helpful.
 6. The ``ExtractTextPlugin`` accepts the file in which we want to save our styles in. lastly, I`ll have to uinclude one more option in my Vue loader options.
+7. If we use the a tag and click on the logo, this will reload the page completely. Since this is a single page application, we would like to have the oppertunity when loading a new page, to load only the component that is linked to the according path in the router view. This can be done through the router link reserved element.
+8. ``exact`` the to path has to be an exact match.
+```javascript
+scrollBehavior(to, from, savedPosition) {
+    if(savedPosition) {
+        return savedPosition
+    }
+}
+
+// if the link has a hash parameter, we could return with the hash selector to scroll to the element with an id of the hash value.
+scrollBehavior(to, from, savedPosition) {
+    if(to.hash) {
+        return {
+            selector: to.hash
+        }
+    }
+}
+```
 
