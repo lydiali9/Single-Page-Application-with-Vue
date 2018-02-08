@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/lydiali9/Single-Page-Application-with-Vue#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "bulma": "^0.5.1",
     "eslint-plugin-standard": "^3.0.1",
     "express": "^4.15.4",
