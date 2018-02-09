@@ -29,4 +29,5 @@ scrollBehavior(to, from, savedPosition) {
     }
 }
 ```
+9. Vuex which is build to help us with state management using a Flux-like pattern.
 
