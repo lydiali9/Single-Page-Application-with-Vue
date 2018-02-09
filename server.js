@@ -1,26 +1,46 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-// To make the path of the file more strict. and retrieve the file path from the path.resolve method. it will return the path relative to the server.js file and from the directory that we run the script from.
 const path = require("path");
+const serialize = require('serialize-javascript');
+const { createBundleRenderer } = require('vue-server-renderer');
+const isProd = typeof process.env.NODE_ENV !== 'undefined' && (process.env.NODE_ENV === 'production')
+let renderer;
 
-// return the data of our index page.
 const indexHTML = (() => {
-    return fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf-8");
+  return fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf-8");
 })();
 
-// To use the express.static module to return all of the static modules from the dist folder.
-app.use("/dist", express.static(path.resolve(__dirname, "./dist")));
+if (isProd) {
+  app.use("/", express.static(path.resolve(__dirname, "./dist")));
+} else {
+  app.use("/dist", express.static(path.resolve(__dirname, "./dist")));
+}
 
-// To require the dev-server module and pass in the app server reference. This will extend the server with two new modules we created in the setup dev server method.
-require("./build/dev-server.js")(app);
+if (isProd) {
+  const bundlePath = path.resolve(__dirname, './dist/server/main.js')
+  renderer = createBundleRenderer(fs.readFileSync(bundlePath, 'utf-8'))
+} else {
+  require("./build/dev-server")(app, bundle => {
+    renderer = createBundleRenderer(bundle)
+  });
+}
 
-app.get('*', (req, res) => {
-    res.write(indexHTML);
+app.get("*", (req, res) => {
+  const context = { url: req.url };
+  renderer.renderToString(context, (err, html) => {
+    if (err) {
+      return res.status(500).send('Server Error')
+    }
+    html = indexHTML.replace('{{ APP }}', html)
+    html = html.replace('{{ STATE }}',
+    `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
+    res.write(html);
     res.end();
+  })
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
+  console.log(`server started at http://localhost:${port}`);
 });
