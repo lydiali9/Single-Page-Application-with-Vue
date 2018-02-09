@@ -30,4 +30,6 @@ scrollBehavior(to, from, savedPosition) {
 }
 ```
 9. Vuex which is build to help us with state management using a Flux-like pattern.
-
+10. Client-side rendering is easy, You can generate the static HTML and JavaScript files, and you`re ready to go. Server-side rendering is more complicated, as you have to write a Node.js script that generates the end result, and run Node.js on your server. Second, client-side rendering has SEO
+issues as we load data and many components asynchronously, although with server-side, we load the end result, making it easy for bots to parse our pages, Third potint is that with client-side rendering, we progressively render the page, which may be good in some cases.
+11.
